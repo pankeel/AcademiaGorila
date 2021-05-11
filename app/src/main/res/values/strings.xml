@@ -1,0 +1,26 @@
+<resources>
+
+    <string name="admob_app_id">ca-app-pub-8915706349520340~2056580259</string>
+    <string name="admob_interstitial_id_1">ca-app-pub-8915706349520340/7117335248</string>
+
+    <string name="app_name">Capeco App</string>
+    <string name="title_home">Home</string>
+    <string name="title_category">Category</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_setting">Setting</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="comment">Comment</string>
+    <string name="share">Share</string>
+    <string name="share_message">\nLet me recommend you this link\n\n</string>
+    <string name="username">Name</string>
+    <string name="email">Email</string>
+    <string name="send_comment">Send Comment</string>
+    <string name="remove_to_favorites">Remove to Favorites</string>
+    <string name="add_to_favorites">Add to Favorites</string>
+    <string name="fcm_message">Push Notification</string>
+    <string name="title_tag">Tag</string>
+    <string name="next">Next</string>
+    <string name="wordpress_app">Wordpress App</string>
+    <string name="app_description">News App is best Wordpress Rest App.</string>
+</resources>

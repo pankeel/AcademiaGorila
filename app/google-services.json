@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "585356155747",
+    "project_id": "asilarslan",
+    "storage_bucket": "asilarslan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585356155747:android:bf4c2c22500d2c211dd156",
+        "android_client_info": {
+          "package_name": "com.academia.gorillas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585356155747-a40mkp52eh1ammjbhggre19qfouphtnu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGbNeAg3WPoENg_20FwXES6txBFUsMjuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585356155747-a40mkp52eh1ammjbhggre19qfouphtnu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "585356155747-c2uv84k3t1sj8r0ec9qtbjjrhntibgf1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.asilarslan.News"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
