@@ -45,7 +45,7 @@ public class WebViewActivity extends AppCompatActivity {
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(link.getLink());
+              webView.loadUrl(link.getLink());
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
@@ -115,7 +115,6 @@ public class WebViewActivity extends AppCompatActivity {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             // Bu method açılan sayfa içinden başka linklere tıklandığında açılmasına yarıyor.
             //Bu methodu override etmez yada edip içini boş bırakırsanız ilk url den açılan sayfa dışında başka sayfaya geçiş yapamaz
-
             view.loadUrl(url);//yeni tıklanan url i açıyor
             return true;
         }

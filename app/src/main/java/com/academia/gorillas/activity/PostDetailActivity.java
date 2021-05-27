@@ -10,6 +10,7 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ public class PostDetailActivity extends AppCompatActivity {
     private TextView date;
     private MaterialButton comment;
     private MaterialButton favorite;
-    private TextView content;
+    private WebView content;
 
     private Post post;
    // private InterstitialAd mInterstitialAd;
@@ -64,7 +65,14 @@ public class PostDetailActivity extends AppCompatActivity {
 
         title.setText(Html.fromHtml(post.getTitle()));
         date.setText(Utils.formatDate("yyyy-MM-dd'T'HH:mm:ss", "dd MMM yyyy",post.getDate()));
-        content.setText(Html.fromHtml(post.getContent()));
+        //content.setText(Html.fromHtml(post.getContent()));
+        content.getSettings().setBuiltInZoomControls(true);
+        content.getSettings().setUseWideViewPort(true);
+        content.getSettings().setLoadWithOverviewMode(true);
+        content.getSettings().setJavaScriptEnabled(true);
+        content.getSettings().setDefaultFontSize(50);
+        content.setScrollContainer(false);
+        content.loadDataWithBaseURL(null, "<style>img{display: inline;height: auto;max-width: 100%;}</style>"  + post.getContent(), "text/html", "utf-8", null);
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         if(db.isIncludeFavorite(post.getId())){
             favorite.setText(R.string.remove_to_favorites);

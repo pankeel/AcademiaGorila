@@ -30,11 +30,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class CategoryFragment extends Fragment {
 
     private List<Category> mCategoryList;
+    private List<Category> CategoryList;
     private CategoryAdapter categoryAdapter;
     private CircularProgressIndicator progressBar;
 
@@ -48,6 +51,7 @@ public class CategoryFragment extends Fragment {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mCategoryList = new ArrayList<>();
+        CategoryList = new ArrayList<>();
         categoryAdapter = new CategoryAdapter(getContext(), mCategoryList);
         mRecyclerView.setAdapter(categoryAdapter);
 
@@ -85,11 +89,28 @@ public class CategoryFragment extends Fragment {
                                 int id = jsonObjectPost.getInt("id");
                                 int count = jsonObjectPost.getInt("count");
                                 String name = jsonObjectPost.getString("name");
+                                int parent = jsonObjectPost.getInt("parent");
 
-                                Category category = new Category(id, count, name);
 
-                                mCategoryList.add(category);
+                                Category category = new Category(id, count, name,parent);
+
+                                CategoryList.add(category);
                             }
+                            for(int i = 0 ; i < CategoryList.size() ; i++){
+                                //parent
+                                if(CategoryList.get(i).getId() == Config.CATEGORY_FILTER)
+                                {
+                                    mCategoryList.add(CategoryList.get(i));
+                                }
+                                //children
+                                if(CategoryList.get(i).getSortId() == Config.CATEGORY_FILTER)
+                                {
+                                    mCategoryList.add(CategoryList.get(i));
+                                    AddSubCategory(CategoryList.get(i).getId());
+                                }
+
+                            }
+
                             progressBar.hide();
                             categoryAdapter.notifyDataSetChanged();
 
@@ -109,5 +130,14 @@ public class CategoryFragment extends Fragment {
 
         AppController.getInstance().addToRequestQueue(stringRequest);
     }
-
+    public void AddSubCategory(int ID)
+    {
+        for(int i = 0 ; i < CategoryList.size() ; i++){
+            if(CategoryList.get(i).getSortId() == ID)
+            {
+                mCategoryList.add(CategoryList.get(i));
+                AddSubCategory(CategoryList.get(i).getId());
+            }
+        }
+    }
 }
