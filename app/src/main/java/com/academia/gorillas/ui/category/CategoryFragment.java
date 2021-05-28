@@ -97,16 +97,20 @@ public class CategoryFragment extends Fragment {
                                 CategoryList.add(category);
                             }
                             for(int i = 0 ; i < CategoryList.size() ; i++){
-                                //parent
-                                if(CategoryList.get(i).getId() == Config.CATEGORY_FILTER)
+//                                //parent
+//                                if(CategoryList.get(i).getId() == Config.CATEGORY_FILTER)
+//                                {
+//                                    mCategoryList.add(CategoryList.get(i));
+//                                }
+//                                //children
+                                if(CategoryList.get(i).getSortId() == 0)
                                 {
-                                    mCategoryList.add(CategoryList.get(i));
-                                }
-                                //children
-                                if(CategoryList.get(i).getSortId() == Config.CATEGORY_FILTER)
-                                {
-                                    mCategoryList.add(CategoryList.get(i));
-                                    AddSubCategory(CategoryList.get(i).getId());
+                                    if(CategoryList.get(i).getId() >1)
+                                    {
+                                        mCategoryList.add(CategoryList.get(i));
+                                        AddSubCategory(CategoryList.get(i).getId());
+                                    }
+
                                 }
 
                             }

@@ -57,6 +57,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
         if(post.getFeaturedMedia() != null){
             Picasso mPicasso = Picasso.get();
             mPicasso.setIndicatorsEnabled(true);
+            mPicasso.get().load(post.getFeaturedMedia()).into(holder.imageView);
             mPicasso.load(post.getFeaturedMedia()).into(holder.imageView);
         }else{
             holder.imageView.setVisibility(View.GONE);

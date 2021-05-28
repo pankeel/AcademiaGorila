@@ -10,6 +10,7 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -71,6 +72,7 @@ public class PostDetailActivity extends AppCompatActivity {
         content.getSettings().setLoadWithOverviewMode(true);
         content.getSettings().setJavaScriptEnabled(true);
         content.getSettings().setDefaultFontSize(50);
+        content.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
         content.setScrollContainer(false);
         content.loadDataWithBaseURL(null, "<style>img{display: inline;height: auto;max-width: 100%;}</style>"  + post.getContent(), "text/html", "utf-8", null);
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());

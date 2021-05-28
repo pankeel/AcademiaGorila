@@ -169,7 +169,6 @@ public class HomeFragment extends Fragment {
     private void getPosts() {
         isLoading = true;
         String url = Config.URL_POSTS + "&page=" + String.valueOf(page);
-        System.out.println(url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
