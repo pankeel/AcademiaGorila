@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -74,7 +75,8 @@ public class PostDetailActivity extends AppCompatActivity {
         content.getSettings().setDefaultFontSize(50);
         content.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
         content.setScrollContainer(false);
-        content.loadDataWithBaseURL(null, "<style>img{display: inline;height: auto;max-width: 100%;}</style>"  + post.getContent(), "text/html", "utf-8", null);
+        System.out.println( post.getContent());
+        content.loadDataWithBaseURL(null, "<style>img{display: inline;width:100%;height: auto;max-width: 100%;}iframe{display: block;width:100%;max-width:100%;}</style>"  + post.getContent(), "text/html", "utf-8", null);
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         if(db.isIncludeFavorite(post.getId())){
             favorite.setText(R.string.remove_to_favorites);

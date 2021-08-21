@@ -73,8 +73,8 @@ public class CategoryFragment extends Fragment {
 
     private void getCategories() {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = Config.URL_CATEGORIES ;
-
+        String url = Config.URL_CATEGORIES + "&parent=" + Config.PARENT_CATEGORY_FILTER;
+        System.out.println(url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -108,7 +108,7 @@ public class CategoryFragment extends Fragment {
                                     if(CategoryList.get(i).getId() >1)
                                     {
                                         mCategoryList.add(CategoryList.get(i));
-                                        AddSubCategory(CategoryList.get(i).getId());
+                                        //AddSubCategory(CategoryList.get(i).getId());
                                     }
 
                                 }

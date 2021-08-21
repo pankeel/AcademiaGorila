@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         for(Page page : mPageList){
             if (item.getItemId() == page.getId()){
                 intent = new Intent(getApplicationContext(), WebViewActivity.class);
-                 link = new Link(page.getTitle(),page.getLink());
-                intent.putExtra("link", link);
+                // link = new Link(page.getTitle(),page.getLink());
+                intent.putExtra("link", page);
                 startActivity(intent);
             }
         }

@@ -3,7 +3,9 @@
     <string name="admob_app_id">ca-app-pub-8915706349520340~2056580259</string>
     <string name="admob_interstitial_id_1">ca-app-pub-8915706349520340/7117335248</string>
 
-    <string name="app_name">Capeco App</string>
+    <string name="app_name">CAPECO App</string>
+    <string name="Developer">Academia by \'Gorillas al Trabajo!\'</string>
+
     <string name="title_home">Home</string>
     <string name="title_category">Category</string>
     <string name="title_favorite">Favorite</string>
@@ -21,6 +23,14 @@
     <string name="fcm_message">Push Notification</string>
     <string name="title_tag">Tag</string>
     <string name="next">Next</string>
-    <string name="wordpress_app">Wordpress App</string>
-    <string name="app_description">News App is best Wordpress Rest App.</string>
+    <string name="wordpress_app">Academia by Gorillas</string>
+    <string name="app_description">Information to help you harvest a bright future!</string>
+    <string name="title_activity_sub_category">Sub Category</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

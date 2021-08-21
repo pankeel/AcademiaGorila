@@ -33,17 +33,17 @@
                 android:layout_centerVertical="true"
                 android:textAllCaps="false"/>
 
-            <TextView
-                android:id="@+id/numbers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="10"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"/>
+<!--            <TextView-->
+<!--                android:id="@+id/numbers"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="16dp"-->
+<!--                android:text="10"-->
+<!--                android:textSize="18sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_alignParentRight="true"/>-->
         </RelativeLayout>
 
 

@@ -2,16 +2,31 @@ package com.academia.gorillas.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.academia.gorillas.Config;
 import com.academia.gorillas.R;
 import com.academia.gorillas.activity.CategoryPostsActivity;
+import com.academia.gorillas.activity.SubCategoryActivity;
 import com.academia.gorillas.model.Category;
+import com.academia.gorillas.service.AppController;
+import com.academia.gorillas.ui.category.CategoryFragment;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -37,7 +52,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
 
         Category category = mList.get(position);
         holder.title.setText(category.getName());
-        holder.numbers.setText(String.valueOf(category.getCount()));
+        //holder.numbers.setText(String.valueOf(category.getCount()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,14 +60,50 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
 
                 //EventBus.getDefault().postSticky(new AdEvent(ad));
 
-                //replaceFragment(new FeaturedAdDetailFragment());
+                //replaceFragment(new CategoryFragment());
+                String url = Config.URL_CATEGORIES + "&parent=" + category.getId();
+                System.out.println(url);
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                System.out.println(response);
+                                try {
+                                    System.out.println("url1");
+                                    JSONArray jsonArray = new JSONArray(response);
+                                    System.out.println("url2");
+                                    if(jsonArray.length() == 0)
+                                    {
+                                        Intent intent = new Intent(mContext, CategoryPostsActivity.class);
+                                        intent.putExtra("category", category);
+                                        mContext.startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        Intent intent = new Intent(mContext, SubCategoryActivity.class);
+                                        intent.putExtra("category", category);
+                                        mContext.startActivity(intent);
+                                    }
 
-                Intent intent = new Intent(mContext, CategoryPostsActivity.class);
-                intent.putExtra("category", category);
-                mContext.startActivity(intent);
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                Log.d("response",response);
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("url3");
+                        Log.e("error",error.toString());
+                        // mTextView.setText("That didn't work!");
+                    }
+                });
+                AppController.getInstance().addToRequestQueue(stringRequest);
 
             }
         });
+
 //        holder.detail.setText(category.getContent());
 //
 //        if(category.getImage() == null){
@@ -94,11 +145,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
 class CategoryViewHolder extends RecyclerView.ViewHolder {
 
     public TextView title;
-    public TextView numbers;
+   // public TextView numbers;
     CategoryViewHolder(View itemView) {
         super(itemView);
 
         title = (TextView)itemView.findViewById(R.id.title);
-        numbers = (TextView)itemView.findViewById(R.id.numbers);
+        //numbers = (TextView)itemView.findViewById(R.id.numbers);
     }
 }

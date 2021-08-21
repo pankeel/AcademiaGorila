@@ -10,8 +10,8 @@ android {
         applicationId "com.academia.gorillas"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 5
-        versionName "5.0"
+        versionCode 13
+        versionName "13.0"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -26,6 +26,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="admob_app_id">ca-app-pub-8915706349520340~2056580259</string>
+    <string name="admob_interstitial_id_1">ca-app-pub-8915706349520340/7117335248</string>
+
+    <string name="app_name">CAPECO App</string>
+    <string name="Developer">Academia by \'Gorillas al Trabajo!\'</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_category">Categoría</string>
+    <string name="title_favorite">Favorito</string>
+    <string name="hello_blank_fragment">Hola fragmento en blanco</string>
+    <string name="title_setting">Configuración</string>
+    <string name="title_calendar">Calendario</string>
+    <string name="comment">Comentario</string>
+    <string name="share">Compartir</string>
+    <string name="share_message">\n Déjame recomendarte este enlac e\n\n</string>
+    <string name="username">Nombre</string>
+    <string name="email">Correo Electrónico</string>
+    <string name="send_comment">Enviar comentario</string>
+    <string name="remove_to_favorites">Eliminar de Favoritos</string>
+    <string name="add_to_favorites">Agregar a Favoritos</string>
+    <string name="fcm_message">Agregado</string>
+    <string name="title_tag">Etiqueta</string>
+    <string name="next">Próximo</string>
+    <string name="wordpress_app">Academia by Gorillas</string>
+    <string name="app_description">Toda la información para ayudarte cosechar un futuro brillante!</string>
+
+</resources>
