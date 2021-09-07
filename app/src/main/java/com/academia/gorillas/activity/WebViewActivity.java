@@ -9,18 +9,16 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.academia.gorillas.R;
 import com.academia.gorillas.model.Link;
-import com.academia.gorillas.model.Page;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 public class WebViewActivity extends AppCompatActivity {
 
-    private Page page;
+    private Link link;
 
     private WebView webView;
     private CircularProgressIndicator progressBar;
@@ -31,12 +29,12 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
-        page = (Page) getIntent().getSerializableExtra("link");
+        link = (Link) getIntent().getSerializableExtra("link");
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(page.getTitle());
+        actionBar.setTitle(link.getName());
 
         webView = findViewById(R.id.web_view);
         progressBar = findViewById(R.id.progress_circular);
@@ -47,15 +45,7 @@ public class WebViewActivity extends AppCompatActivity {
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setBuiltInZoomControls(true);
-        webView.getSettings().setUseWideViewPort(true);
-        webView.getSettings().setLoadWithOverviewMode(true);
-        //webView.getSettings().setDefaultFontSize(50);
-        webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
-        webView.setScrollContainer(false);
-        System.out.println("pankeel" + page.getContent());
-        webView.loadDataWithBaseURL(null, "<style>img{display: inline;width:100%;height: auto;max-width: 100%;}figure{display: block;max-width:100%;margin-top:10px;margin-bottom:10px;}</style>"  + page.getContent(), "text/html", "utf-8", null);
-       // webView.loadUrl(link.getLink());
+        webView.loadUrl(link.getLink());
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
@@ -84,7 +74,7 @@ public class WebViewActivity extends AppCompatActivity {
                     shareIntent.setType("text/plain");
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
                     String shareMessage = getString(R.string.share_message);
-                    shareMessage = shareMessage + page.getLink();
+                    shareMessage = shareMessage + link.getLink();
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
                     startActivity(Intent.createChooser(shareIntent, "choose one"));
                 } catch(Exception e) {
@@ -109,7 +99,7 @@ public class WebViewActivity extends AppCompatActivity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) { //Sayfa yüklenirken çalışır
             super.onPageStarted(view, url, favicon);
-            System.out.println(url);
+
             progressBar.show();
 
         }
@@ -125,7 +115,7 @@ public class WebViewActivity extends AppCompatActivity {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             // Bu method açılan sayfa içinden başka linklere tıklandığında açılmasına yarıyor.
             //Bu methodu override etmez yada edip içini boş bırakırsanız ilk url den açılan sayfa dışında başka sayfaya geçiş yapamaz
-            System.out.println("pankeel");
+
             view.loadUrl(url);//yeni tıklanan url i açıyor
             return true;
         }

@@ -29,6 +29,17 @@ public class Utils {
         return outFormat.format(date);
     }
 
+
+    public static boolean checkDatePattern(String format, String data) {
+        try {
+            SimpleDateFormat f = new SimpleDateFormat(format);
+            f.parse(data);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+
     public static void setListViewHeightBasedOnChildren(final ListView listView) {
         listView.post(new Runnable() {
             @Override

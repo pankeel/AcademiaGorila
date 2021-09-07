@@ -25,4 +25,22 @@
     <string name="wordpress_app">Academia by Gorillas</string>
     <string name="app_description">Toda la información para ayudarte cosechar un futuro brillante!</string>
 
+
+    <string name="next_tag">Próxima</string>
+
+    <string name="skip">SALTAR</string>
+
+    <string name="start">ENTENDIDO</string>
+
+    <string name="slide_1_title">información técnica</string>
+
+    <string name="slide_1_desc">Acceda a información en sistema de Siembra Directa, Trigo , perspectives climáticas y otros.</string>
+
+    <string name="slide_2_title">Estadística</string>
+
+    <string name="slide_2_desc">Acceda a información estadística de exportación de granos.</string>
+
+    <string name="slide_3_title">Capacitaciopnes</string>
+
+    <string name="slide_3_desc">manténgase actualizado sobre capacitaciones que ofrece la cámara.</string>
 </resources>

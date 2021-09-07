@@ -3,11 +3,9 @@ package com.academia.gorillas.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -50,15 +48,18 @@ public class SplashActivity extends AppCompatActivity {
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{
-                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                    Boolean firstLogin = prefs.getBoolean("first_login", false);
-                    if(firstLogin){
-                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }else{
-                        Intent intent = new Intent(SplashActivity.this, OnboardingActivity.class);
-                        startActivity(intent);
-                    }
+//                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//                    Boolean firstLogin = prefs.getBoolean("first_login", false);
+//                    if(firstLogin){
+//                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+//                        startActivity(intent);
+//                    }else{
+//                        Intent intent = new Intent(SplashActivity.this, OnboardingActivity.class);
+//                        startActivity(intent);
+//                    }
+
+                    Intent intent = new Intent(SplashActivity.this, WelcomeActivity.class);
+                    startActivity(intent);
                 }
             }
         };

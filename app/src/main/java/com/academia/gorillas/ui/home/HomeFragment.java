@@ -137,9 +137,7 @@ public class HomeFragment extends Fragment {
                                 String featuredMedia = null;
                                 if(!jsonObjectPost.getJSONObject("_embedded").isNull("wp:featuredmedia"))
                                 {
-                                    if(!jsonObjectPost.getJSONObject("_embedded").getJSONArray("wp:featuredmedia").getJSONObject(0).isNull("source_url")) {
-                                        featuredMedia = jsonObjectPost.getJSONObject("_embedded").getJSONArray("wp:featuredmedia").getJSONObject(0).getString("source_url");
-                                    }
+                                    featuredMedia = jsonObjectPost.getJSONObject("_embedded").getJSONArray("wp:featuredmedia").getJSONObject(0).getString("source_url");
                                 }
 
                                 Post post = new Post(id, title,excerpt,content,featuredMedia,date,link);
@@ -169,6 +167,7 @@ public class HomeFragment extends Fragment {
     private void getPosts() {
         isLoading = true;
         String url = Config.URL_POSTS + "&page=" + String.valueOf(page);
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -189,9 +188,7 @@ public class HomeFragment extends Fragment {
                                 String featuredMedia = null;
                                 if(!jsonObjectPost.getJSONObject("_embedded").isNull("wp:featuredmedia"))
                                 {
-                                    if(!jsonObjectPost.getJSONObject("_embedded").getJSONArray("wp:featuredmedia").getJSONObject(0).isNull("source_url")) {
-                                        featuredMedia = jsonObjectPost.getJSONObject("_embedded").getJSONArray("wp:featuredmedia").getJSONObject(0).getString("source_url");
-                                    }
+                                    featuredMedia = jsonObjectPost.getJSONObject("_embedded").getJSONArray("wp:featuredmedia").getJSONObject(0).getString("source_url");
                                 }
 
                                 Post post = new Post(id, title,excerpt,content,featuredMedia,date,link);

@@ -96,6 +96,7 @@ public class CategoryPostsActivity extends AppCompatActivity {
         isLoading = true;
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = Config.URL_CATEGORY_POST + String.valueOf(category.getId()) + "&page=" + String.valueOf(page);
+
 // Sağlanan URL’den bir dize yanıtı istenmektedir.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -117,9 +118,7 @@ public class CategoryPostsActivity extends AppCompatActivity {
                                 String featuredMedia = null;
                                 if(!jsonObjectPost.getJSONObject("_embedded").isNull("wp:featuredmedia"))
                                 {
-                                    if(!jsonObjectPost.getJSONObject("_embedded").getJSONArray("wp:featuredmedia").getJSONObject(0).isNull("source_url")) {
-                                        featuredMedia = jsonObjectPost.getJSONObject("_embedded").getJSONArray("wp:featuredmedia").getJSONObject(0).getString("source_url");
-                                    }
+                                    featuredMedia = jsonObjectPost.getJSONObject("_embedded").getJSONArray("wp:featuredmedia").getJSONObject(0).getString("source_url");
                                 }
 
                                 Post post = new Post(id, title,excerpt,content,featuredMedia,date,link);

@@ -5,9 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LevelListDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
-import android.view.Display;
+import android.text.Spanned;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,13 +27,17 @@ import com.academia.gorillas.R;
 import com.academia.gorillas.helper.DatabaseHelper;
 import com.academia.gorillas.model.Post;
 import com.academia.gorillas.util.Utils;
-//import com.google.android.gms.ads.AdListener;
-//import com.google.android.gms.ads.AdRequest;
-//import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Picasso;
 
-public class PostDetailActivity extends AppCompatActivity {
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class PostDetailActivity extends AppCompatActivity  implements Html.ImageGetter {
 
     private ImageView imageView;
     private TextView title;
@@ -36,7 +47,7 @@ public class PostDetailActivity extends AppCompatActivity {
     private WebView content;
 
     private Post post;
-   // private InterstitialAd mInterstitialAd;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +77,16 @@ public class PostDetailActivity extends AppCompatActivity {
 
 
         title.setText(Html.fromHtml(post.getTitle()));
-        date.setText(Utils.formatDate("yyyy-MM-dd'T'HH:mm:ss", "dd MMM yyyy",post.getDate()));
+        if(Utils.checkDatePattern("yyyy-MM-dd'T'HH:mm:ss", post.getDate())){
+            date.setText(Utils.formatDate("yyyy-MM-dd'T'HH:mm:ss", "dd MMM yyyy",post.getDate()));
+        }else if(Utils.checkDatePattern("yyyy-MM-dd HH:mm:ss", post.getDate())){
+            date.setText(Utils.formatDate("yyyy-MM-dd HH:mm:ss", "dd MMM yyyy",post.getDate()));
+        }else{
+            date.setText(post.getDate());
+        }
         //content.setText(Html.fromHtml(post.getContent()));
+
+        Spanned spanned = Html.fromHtml(post.getContent(), this, null);
         content.getSettings().setBuiltInZoomControls(true);
         content.getSettings().setUseWideViewPort(true);
         content.getSettings().setLoadWithOverviewMode(true);
@@ -77,6 +96,7 @@ public class PostDetailActivity extends AppCompatActivity {
         content.setScrollContainer(false);
         System.out.println( post.getContent());
         content.loadDataWithBaseURL(null, "<style>img{display: inline;width:100%;height: auto;max-width: 100%;}iframe{display: block;width:100%;max-width:100%;}</style>"  + post.getContent(), "text/html", "utf-8", null);
+
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         if(db.isIncludeFavorite(post.getId())){
             favorite.setText(R.string.remove_to_favorites);
@@ -159,4 +179,57 @@ public class PostDetailActivity extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
+    @Override
+    public Drawable getDrawable(String source) {
+        LevelListDrawable d = new LevelListDrawable();
+        Drawable empty = getResources().getDrawable(R.drawable.logo);
+        d.addLevel(0, 0, empty);
+        d.setBounds(0, 0, empty.getIntrinsicWidth(), empty.getIntrinsicHeight());
+
+        new LoadImage().execute(source, d);
+
+        return d;
+    }
+
+
+    class LoadImage extends AsyncTask<Object, Void, Bitmap> {
+
+        private LevelListDrawable mDrawable;
+
+        @Override
+        protected Bitmap doInBackground(Object... params) {
+            String source = (String) params[0];
+            mDrawable = (LevelListDrawable) params[1];
+            Log.d("TAG", "doInBackground " + source);
+            try {
+                InputStream is = new URL(source).openStream();
+                return BitmapFactory.decodeStream(is);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            Log.d("TAG", "onPostExecute drawable " + mDrawable);
+            Log.d("TAG", "onPostExecute bitmap " + bitmap);
+            if (bitmap != null) {
+                BitmapDrawable d = new BitmapDrawable(bitmap);
+                mDrawable.addLevel(1, 1, d);
+                mDrawable.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
+                mDrawable.setLevel(1);
+                // i don't know yet a better way to refresh TextView
+                // mTv.invalidate() doesn't work as expected
+                //CharSequence t = content.getText();
+               // content.setText(t);
+            }
+        }
+    }
+
 }

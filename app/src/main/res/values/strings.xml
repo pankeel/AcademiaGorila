@@ -25,12 +25,25 @@
     <string name="next">Next</string>
     <string name="wordpress_app">Academia by Gorillas</string>
     <string name="app_description">Information to help you harvest a bright future!</string>
-    <string name="title_activity_sub_category">Sub Category</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="next_tag">Next</string>
+
+     <string name="skip">SKIP</string>
+
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">información técnica</string>
+
+    <string name="slide_1_desc">Acceda a información en sistema de Siembra Directa, Trigo , perspectives climáticas y otros.</string>
+
+    <string name="slide_2_title">Estadística</string>
+
+    <string name="slide_2_desc">Acceda a información estadística de exportación de granos.</string>
+
+    <string name="slide_3_title">Capacitaciopnes</string>
+
+    <string name="slide_3_desc">manténgase actualizado sobre capacitaciones que ofrece la cámara.</string>
+
+
 </resources>

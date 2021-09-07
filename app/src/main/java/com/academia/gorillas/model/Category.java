@@ -3,7 +3,6 @@ package com.academia.gorillas.model;
 import java.io.Serializable;
 
 public class Category implements Serializable {
-
     private int id;
     private int count;
     private String name;
